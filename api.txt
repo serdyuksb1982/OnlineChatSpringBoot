@@ -1,7 +1,7 @@
 GET /api/auth - получение статуса авторизации
 запрос -
 ответ - {
-    "result": true
+    "result": true (or false)
 }
 
 GET /api/users - получение списка пользователей
