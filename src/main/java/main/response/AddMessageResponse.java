@@ -6,7 +6,7 @@ public class AddMessageResponse {
 
     private boolean result;
 
-    private Date time;
+    private String time;
 
     public boolean isResult() {
         return result;
@@ -16,11 +16,11 @@ public class AddMessageResponse {
         this.result = result;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }
