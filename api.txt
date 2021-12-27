@@ -1,0 +1,45 @@
+GET /api/auth - получение статуса авторизации
+запрос -
+ответ - {
+    "result": true
+}
+
+GET /api/users - получение списка пользователей
+запрос -
+ответ: {
+    "users": [
+        {
+            "id": 1,
+            "name": "Sergey Serdyuk"
+        }
+    ],
+    "users": [
+            {
+                "id": 2,
+                "name": "Aleksey Kiselev"
+            }
+        ]
+}
+GET /api/users/{id} - получение пользователя
+GET /api/messages - получение ответов
+запрос -
+ответ - {
+    "messages": [
+        {
+            "name": "User name",
+            "time": "12:16 24.12.2021",
+            "text": "Text messages"
+        }
+}
+
+POST /api/messages - отправка сообщения
+запрос - text
+ответ - {
+    "result": true
+}
+
+POST /api/users - создание пользователя при логине
+запрос - user name
+ответ - {
+    "result": true
+}
