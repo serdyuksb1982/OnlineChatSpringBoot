@@ -1,7 +1,10 @@
 package main;
 
+import main.model.Message;
 import main.model.User;
+import main.repository.MessageRepository;
 import main.repository.UserRepository;
+import main.response.AuthResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,13 +21,20 @@ public class ChatController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private MessageRepository messageRepository;
+
     @GetMapping(path = "/api/auth")
-    public HashMap<String, Boolean> auth() {
-        HashMap<String, Boolean> response = new HashMap<>();
+    public AuthResponse auth() {
+        AuthResponse response = new AuthResponse();
 
         String sessionId = getSessionId();
         User user = userRepository.getBySessionId(sessionId);
-        response.put("result", user != null);
+        response.setResult( user != null);
+
+        if(user != null) {
+            response.setName(user.getName());
+        }
 
         return response;
     }
@@ -39,6 +49,23 @@ public class ChatController {
         user.setRegTime(new Date());
         user.setSessionId(sessionId);
         userRepository.save(user);
+        HashMap<String, Boolean> response = new HashMap<>();
+        response.put("result", true);
+        return response;
+    }
+
+    @PostMapping(path = "/api/messages")
+    public HashMap<String, Boolean> addMessage(HttpServletRequest request) {
+        String text = request.getParameter("text");
+
+        String sessionId = getSessionId();
+        User user = userRepository.getBySessionId(sessionId);
+        Message message = new Message();
+        message.setSendTime(new Date());
+        message.setUser(user);
+        message.setText(text);
+        messageRepository.save(message);
+
         HashMap<String, Boolean> response = new HashMap<>();
         response.put("result", true);
         return response;

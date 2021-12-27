@@ -69,7 +69,7 @@ $(function(){
                 messagesList.append(messageItem);
                 $('.message-text').val('');
             } else {
-                alert('Что-то пошлло не так :(');
+                alert('Что-то пошло не так :(');
             }
         });
     });
