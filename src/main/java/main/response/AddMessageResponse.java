@@ -1,6 +1,5 @@
 package main.response;
 
-import java.util.Date;
 
 public class AddMessageResponse {
 

@@ -9,17 +9,11 @@ import main.response.AuthResponse;
 import main.response.MessageResponse;
 import main.response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
-
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
 @RestController
@@ -99,19 +93,26 @@ public class ChatController {
         return response;
     }
 
-    @GetMapping(path = "/api/users")
+    /*@GetMapping(path = "/api/users")
     public HashMap<String, List> getUsers() {
         ArrayList<UserResponse> usersList = new ArrayList<>();
         Iterable<User> users = userRepository.findAll();
         for(User user : users) {
             UserResponse userItem = new UserResponse();
             userItem.setName(user.getName());
-            userItem.setTime(formatter.format(user.getRegTime()));
 
             usersList.add(userItem);
         }
         HashMap<String, List> response = new HashMap<>();
-        response.put("user", usersList);
+        response.put("users", usersList);
+        return response;
+    }*/
+
+    @GetMapping(path = "/api/users")
+    public Map<String, Iterable<User>> getUs() {
+        Map<String, Iterable<User>> response = new HashMap<>();
+        Iterable<User> users = userRepository.findAll();
+        response.put("users", users);
         return response;
     }
 
