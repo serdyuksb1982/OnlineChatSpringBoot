@@ -1,0 +1,41 @@
+.main {
+    background-color: #edecea;
+    width: 1000px;
+    height: 600px;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: stretch;
+
+}
+
+.left {
+    width: 100%;
+}
+
+.messages-list {
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    height: 500px;
+    padding: 10px;
+    overflow: scroll;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.new-message {
+    height: 90px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+.right {
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+    margin-left: 10px;
+}
