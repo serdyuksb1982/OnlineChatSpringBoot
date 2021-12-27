@@ -7,6 +7,8 @@ import main.repository.UserRepository;
 import main.response.AddMessageResponse;
 import main.response.AuthResponse;
 import main.response.MessageResponse;
+import main.response.UserResponse;
+import org.graalvm.compiler.lir.LIRInstruction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -95,6 +97,22 @@ public class ChatController {
         }
         HashMap<String, List> response = new HashMap<>();
         response.put("messages", messageList);
+        return response;
+    }
+
+    @GetMapping(path = "/api/messages")
+    public HashMap<String, List> getUsers() {
+        ArrayList<UserResponse> usersList = new ArrayList<>();
+        Iterable<User> users = userRepository.findAll();
+        for(User user : users) {
+            UserResponse userItem = new UserResponse();
+            userItem.setName(user.getName());
+            userItem.setTime(formatter.format(user.getRegTime()));
+
+            usersList.add(userItem);
+        }
+        HashMap<String, List> response = new HashMap<>();
+        response.put("user", usersList);
         return response;
     }
 
