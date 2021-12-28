@@ -1,4 +1,4 @@
-package main;
+package main.controller;
 
 import main.model.Message;
 import main.model.User;
