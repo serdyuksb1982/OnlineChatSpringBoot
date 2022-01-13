@@ -1,9 +1,12 @@
 package main.model;
 
+import org.springframework.context.annotation.ComponentScan;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@ComponentScan
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

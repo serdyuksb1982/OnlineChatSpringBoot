@@ -19,6 +19,11 @@ import java.util.*;
 @RestController
 public class ChatController {
 
+    @RequestMapping("/")
+    public String home() {
+        return "Hello World!";
+    }
+
     @Autowired
     private UserRepository userRepository;
 
