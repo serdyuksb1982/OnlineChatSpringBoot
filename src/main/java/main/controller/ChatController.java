@@ -1,5 +1,6 @@
 package main.controller;
 
+import main.model.HelloService;
 import main.model.Message;
 import main.model.User;
 import main.repository.MessageRepository;
@@ -7,7 +8,6 @@ import main.repository.UserRepository;
 import main.response.AddMessageResponse;
 import main.response.AuthResponse;
 import main.response.MessageResponse;
-import main.response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -19,9 +19,10 @@ import java.util.*;
 @RestController
 public class ChatController {
 
-    @RequestMapping("/")
-    public String home() {
-        return "Hello World!";
+    @RequestMapping("/welcome")
+    public String welcome( String name) {
+        HelloService service = new HelloService();
+        return service.getWelcomeMessage().concat(name).concat("!");
     }
 
     @Autowired
@@ -106,6 +107,12 @@ public class ChatController {
         Iterable<User> users = userRepository.findAll();
         response.put("users", users);
         return response;
+    }
+
+    @GetMapping(path = "/api/users/{id}")
+    public Optional<User> get(int id) {
+
+        return userRepository.findById(id);
     }
 
     private String getSessionId() {
